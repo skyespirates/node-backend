@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homepage</title>
+  </head>
+  <body>
+    <h1>Show All Comments</h1>
+    <a href="/comments/new">new</a>
+    <ol>
+      <% for(let c of comments) { %>
+      <li>
+        <%= c.comment %> - <strong><%= c.name %></strong>
+        <small><a href="/comments/<%= c.id %> ">detail</a></small>
+        <small><a href="/comments/<%= c.id %>/edit ">update</a></small>
+      </li>
+      <% } %>
+    </ol>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Comment</title>
+  </head>
+  <body>
+    <h1>Update Comment</h1>
+    <a href="/comments">back</a>
+    <p>Author: <strong><%= updateComment.name %> </strong></p>
+    <form
+      action="/comments/<%= updateComment.id %>?_method=PATCH "
+      method="POST"
+      autocomplete="off"
+    >
+      <section>
+        <textarea name="comment" cols="30" rows="5">
+<%= updateComment.comment %> </textarea
+        >
+      </section>
+      <button>Update</button>
+    </form>
+  </body>
+</html>
