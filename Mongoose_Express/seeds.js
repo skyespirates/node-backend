@@ -14,5 +14,18 @@ mongoose
     console.log(err);
   });
 
-const fruit = new Product({ name: "orange", price: 1.99, category: "fruit" });
-fruit.save();
+// const fruit = new Product({ name: "orange", price: 1.99, category: "fruit" });
+// fruit
+//   .save()
+//   .then((data) => console.log(data))
+//   .catch((err) => console.log(err));
+
+// Product.insertMany([
+//   { name: "manggo", price: 0.56, category: "fruit" },
+//   { name: "cabbage", price: 0.99, category: "vegetable" },
+//   { name: "brocoli", price: 0.39, category: "vegetable" },
+//   { name: "potato", price: 0.69, category: "vegetable" },
+//   { name: "apple", price: 0.99, category: "fruit" },
+// ])
+//   .then((data) => console.log(data))
+//   .catch((err) => console.log(err));
