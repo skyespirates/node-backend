@@ -21,7 +21,7 @@ const studentSchema = new mongoose.Schema({
   status: Boolean,
 });
 //CREATE STUDENT MODEL
-const Student = new mongoose.model("Student", studentSchema);
+const Student = mongoose.model("Student", studentSchema);
 //CREATE STUDENT INSTANCE
 const skyes = new Student({
   name: "skyes crawford",
