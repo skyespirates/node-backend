@@ -20,12 +20,14 @@ mongoose
 //   .then((data) => console.log(data))
 //   .catch((err) => console.log(err));
 
-// Product.insertMany([
-//   { name: "manggo", price: 0.56, category: "fruit" },
-//   { name: "cabbage", price: 0.99, category: "vegetable" },
-//   { name: "brocoli", price: 0.39, category: "vegetable" },
-//   { name: "potato", price: 0.69, category: "vegetable" },
-//   { name: "apple", price: 0.99, category: "fruit" },
-// ])
-//   .then((data) => console.log(data))
-//   .catch((err) => console.log(err));
+Product.insertMany([
+  { name: "manggo", price: 0.56, category: "fruit" },
+  { name: "cabbage", price: 0.5, category: "vegetable" },
+  { name: "brocoli", price: 0.3, category: "vegetable" },
+  { name: "potato", price: 0.6, category: "vegetable" },
+  { name: "apple", price: 1.99, category: "fruit" },
+  { name: "milk", price: 2.12, category: "dairy" },
+  { name: "cheese", price: 1.87, category: "dairy" },
+])
+  .then((data) => console.log(data))
+  .catch((err) => console.log(err));

@@ -15,25 +15,16 @@
         <input type="number" name="price" placeholder="Price" />
       </div>
       <div>
-        <section>
-          <input type="radio" name="category" id="fruit" value="fruit" />
-          <label for="fruit">fruit</label>
-        </section>
-        <section>
-          <input
-            type="radio"
-            name="category"
-            id="vegetable"
-            value="vegetable"
-          />
-          <label for="vegetable">vegetable</label>
-        </section>
-        <section>
-          <input type="radio" name="category" id="dairy" value="dairy" />
-          <label for="dairy">dairy</label>
-        </section>
+        <select name="category">
+          <% for(let category of categories) { %>
+          <option value="<%=category%>"><%=category%></option>
+          <% } %>
+        </select>
       </div>
-      <button>Submit</button>
+      <div>
+        <button>Submit</button>
+      </div>
     </form>
+    <p><a href="/products">cancel</a></p>
   </body>
 </html>

@@ -6,9 +6,21 @@
     <title>Detail for <%= product.name %></title>
   </head>
   <body>
-    <h1><a href="/products">back</a></h1>
-    <p><%= product.name %></p>
-    <p><%= product.price %></p>
-    <p><%= product.category %></p>
+    <h1>Detail for <%= product.name %></h1>
+    <h2><a href="/products/<%=  product._id %>/edit ">edit</a></h2>
+    <p>Name: <strong><%= product.name %></strong></p>
+    <p>Price: <strong><%= product.price %></strong></p>
+    <p>
+      Category:
+      <strong
+        ><a href="/products?category=<%= product.category %>"
+          ><%= product.category %></a
+        ></strong
+      >
+    </p>
+    <form action="/products/<%=product._id%>?_method=DELETE" method="POST">
+      <button>delete</button>
+    </form>
+    <h2><a href="/products">go home</a></h2>
   </body>
 </html>

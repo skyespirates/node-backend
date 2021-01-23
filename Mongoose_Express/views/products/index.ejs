@@ -6,15 +6,17 @@
     <title>Homepage</title>
   </head>
   <body>
-    <h1>Welcome to Our Landing Page</h1>
-    <h1><a href="/products/new">new</a></h1>
-    <ol>
+    <h1><%= category %> Products</h1>
+    <span><a href="/products/new">new</a></span>
+    <% if(category !== 'All') { %>
+    <span><a href="/products">all products</a></span>
+    <% } %>
+    <ul>
       <% for(let doc of foundProducts) { %>
       <li>
         <a href="/products/<%= doc._id %>"><%= doc.name %></a>
-        <small><a href="/products/<%= doc._id %>/edit">edit</a></small>
       </li>
       <% } %>
-    </ol>
+    </ul>
   </body>
 </html>
