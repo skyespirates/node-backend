@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create New Campground</title>
+  </head>
+  <body>
+    <form action="/campgrounds" method="POST">
+      <div>
+        <input type="text" name="title" placeholder="title" />
+      </div>
+      <div>
+        <input type="text" name="price" placeholder="price" />
+      </div>
+      <div>
+        <input type="text" name="description" placeholder="description" />
+      </div>
+      <div>
+        <input type="text" name="location" placeholder="location" />
+      </div>
+      <button>submit</button>
+    </form>
+    <button><a href="/campgrounds">home</a></button>
+  </body>
+</html>
