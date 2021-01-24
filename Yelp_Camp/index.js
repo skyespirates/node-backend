@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const engine = require("ejs-mate");
 const mongoose = require("mongoose");
 const path = require("path");
 const Campground = require("./models/campground");
@@ -20,6 +21,7 @@ db.once("open", () => {
 
 const Camground = require("./models/campground");
 
+app.engine("ejs", engine);
 app.use(methodOverride("_method"));
 app.use(express.urlencoded({ extended: true }));
 app.set("views", path.join(__dirname, "views"));

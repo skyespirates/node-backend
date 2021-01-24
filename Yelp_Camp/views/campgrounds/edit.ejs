@@ -1,46 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit Campground</title>
-  </head>
-  <body>
-    <form action="/campgrounds/<%=campground._id%>?_method=PUT" method="POST">
-      <div>
+<% layout('layouts/boilerplate') %>
+<h1 class="text-center">Edit Campground</h1>
+<div class="row">
+  <div class="col-6 offset-3">
+    <form
+      action="/campgrounds/<%=campground._id%>?_method=PUT"
+      method="POST"
+      autocomplete="off"
+    >
+      <div class="mb-3">
+        <label class="form-label" for="title">Title:</label>
         <input
+          class="form-control"
+          id="title"
           type="text"
           name="title"
-          placeholder="title"
+          placeholder="Puncak Lawang"
           value="<%= campground.title %>"
         />
       </div>
-      <div>
+      <div class="mb-3">
+        <label class="form-label" for="price">Price:</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">$</span>
+          <input
+            id="price"
+            type="text"
+            class="form-control"
+            placeholder="23.5"
+            name="price"
+            value="<%= campground.price %>"
+          />
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="image">Image:</label>
         <input
+          class="form-control"
+          id="image"
           type="text"
-          name="price"
-          placeholder="price"
-          value="<%= campground.price %>"
+          name="image"
+          placeholder="https://images.unsplash.com/photo-1507516394281-6e064d425a26"
+          value="<%= campground.image %>"
         />
       </div>
-      <div>
-        <input
-          type="text"
+      <div class="mb-3">
+        <label class="form-label" for="description">Description:</label>
+        <textarea
+          class="form-control"
           name="description"
-          placeholder="description"
-          value="<%= campground.description %>"
-        />
+          id="description"
+          cols="30"
+          rows="3"
+          placeholder="Put some description here"
+        >
+<%= campground.description %> </textarea
+        >
       </div>
-      <div>
+      <div class="mb-3">
+        <label class="form-label" for="location">Location:</label>
         <input
+          class="form-control"
+          id="location"
           type="text"
           name="location"
-          placeholder="location"
+          placeholder="West Agam"
           value="<%= campground.location %>"
         />
       </div>
-      <button>edit</button>
+      <button class="btn btn-primary">update</button>
     </form>
-    <button><a href="/campgrounds">home</a></button>
-  </body>
-</html>
+    <a href="/campgrounds">back</a>
+  </div>
+</div>
