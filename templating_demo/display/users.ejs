@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('partials/head.ejs') %>
+    <title><%= subpath %></title>
+  </head>
+  <body>
+    <%- include('partials/navbar.ejs') %>
+    <div class="container">
+      <h1><%= subpath.toUpperCase() %></h1>
+      <% for(e of users) { %>
+      <h3><%= e.name %></h3>
+      <small> <%= e.username %> </small>
+      <% } %>
+    </div>
+  </body>
+</html>
