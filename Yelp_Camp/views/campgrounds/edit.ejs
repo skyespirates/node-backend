@@ -6,6 +6,8 @@
       action="/campgrounds/<%=campground._id%>?_method=PUT"
       method="POST"
       autocomplete="off"
+      novalidate
+      class="validation"
     >
       <div class="mb-3">
         <label class="form-label" for="title">Title:</label>
@@ -16,7 +18,9 @@
           name="title"
           placeholder="Puncak Lawang"
           value="<%= campground.title %>"
+          required
         />
+        <div class="valid-feedback">Looks good!</div>
       </div>
       <div class="mb-3">
         <label class="form-label" for="price">Price:</label>
@@ -29,7 +33,9 @@
             placeholder="23.5"
             name="price"
             value="<%= campground.price %>"
+            required
           />
+          <div class="valid-feedback">Looks good!</div>
         </div>
       </div>
       <div class="mb-3">
@@ -41,7 +47,9 @@
           name="image"
           placeholder="https://images.unsplash.com/photo-1507516394281-6e064d425a26"
           value="<%= campground.image %>"
+          required
         />
+        <div class="valid-feedback">Looks good!</div>
       </div>
       <div class="mb-3">
         <label class="form-label" for="description">Description:</label>
@@ -52,9 +60,11 @@
           cols="30"
           rows="3"
           placeholder="Put some description here"
+          required
         >
 <%= campground.description %> </textarea
         >
+        <div class="valid-feedback">Looks good!</div>
       </div>
       <div class="mb-3">
         <label class="form-label" for="location">Location:</label>
@@ -65,7 +75,9 @@
           name="location"
           placeholder="West Agam"
           value="<%= campground.location %>"
+          required
         />
+        <div class="valid-feedback">Looks good!</div>
       </div>
       <button class="btn btn-primary">update</button>
     </form>
