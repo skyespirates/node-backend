@@ -6,8 +6,8 @@
     <title>New Product</title>
   </head>
   <body>
-    <h1>Add New Product</h1>
-    <form action="/products" method="POST" autocomplete="off">
+    <h1>Add New Product to <%= farm.name %></h1>
+    <form action="/farms/<%= id %>/products" method="POST" autocomplete="off">
       <div>
         <input type="text" name="name" placeholder="Product Name" />
       </div>
@@ -25,6 +25,6 @@
         <button>Submit</button>
       </div>
     </form>
-    <p><a href="/products">cancel</a></p>
+    <p><a href="/farms">cancel</a></p>
   </body>
 </html>

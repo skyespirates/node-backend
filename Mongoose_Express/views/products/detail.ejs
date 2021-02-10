@@ -18,9 +18,10 @@
         ></strong
       >
     </p>
+    <p><a href="/farms/<%= product.farm._id %>"><%= product.farm.name %></a></p>
     <form action="/products/<%=product._id%>?_method=DELETE" method="POST">
       <button>delete</button>
     </form>
-    <h2><a href="/products">go home</a></h2>
+    <a href="/products">products</a>
   </body>
 </html>
