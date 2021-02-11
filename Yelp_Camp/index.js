@@ -22,6 +22,7 @@ db.once("open", () => {
 });
 
 const Camground = require("./models/campground");
+const Review = require("./models/review");
 
 app.engine("ejs", engine);
 app.use(methodOverride("_method"));
@@ -43,13 +44,14 @@ app.get(
   "/campgrounds/:id",
   catchAsync(async (req, res) => {
     const { id } = req.params;
-    const campground = await Campground.findById(id);
+    const campground = await Campground.findById(id).populate("reviews");
     res.render("campgrounds/show", { campground });
   })
 );
 app.post(
   "/campgrounds",
   catchAsync(async (req, res, next) => {
+    if (!req.body.campgrounds) throw new ExpressError("Invalid data", 400);
     const campground = new Campground(req.body);
     const newCamp = await campground.save();
     res.redirect(`/campgrounds/${newCamp._id}`);
@@ -81,11 +83,36 @@ app.delete(
     res.redirect("/campgrounds");
   })
 );
+
+app.post(
+  "/campgrounds/:id/reviews",
+  catchAsync(async (req, res) => {
+    const campground = await Campground.findById(req.params.id);
+    const review = new Review(req.body.review);
+    campground.reviews.push(review);
+    await review.save();
+    await campground.save();
+    res.redirect(`/campgrounds/${campground._id}`);
+  })
+);
+
+app.delete(
+  "/campgrounds/:id/reviews/:reviewID",
+  catchAsync(async (req, res) => {
+    const { id, reviewID } = req.params;
+    await Campground.findOneAndUpdate(id, { $pull: { reviews: reviewID } });
+    await Review.findOneAndDelete(reviewID);
+    res.redirect(`/campgrounds/${id}`);
+  })
+);
+
 app.all("*", (req, res, next) => {
-  res.send("404");
+  next(new ExpressError("Page Not Found!", 404));
 });
 app.use((err, req, res, next) => {
-  res.send("SOMETHING WENT WRONT!");
+  const { statusCode = 500 } = err;
+  if (!err.message) err.message = "Oh No! Something Went Wrong!";
+  res.status(statusCode).render("error", { err });
 });
 const PORT = 3000;
 app.listen(PORT, () => {
