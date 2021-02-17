@@ -1,72 +1,45 @@
+// PACKAGE or LIBRARY
 const express = require("express");
-const methodOverride = require("method-override");
-const { v4: uuid } = require("uuid");
+const mongoose = require("mongoose");
 const app = express();
 const path = require("path");
+const cors = require("cors");
+require("dotenv").config();
+// ROUTES
+const userRoutes = require("./routes/users");
+const todoRoutes = require("./routes/todos");
 
-app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 
-app.use(express.urlencoded({ extended: true }));
+app.set("view engine", "ejs");
+
+mongoose
+  .connect(process.env.DB_URL || "mongodb://localhost:27017/api", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+  })
+  .then(() => {
+    console.log("CONNECTED TO MONGOO DB");
+  })
+  .catch((err) => {
+    console.log("OH NO SOMETHING WENT WRONG");
+    console.log(err);
+  });
+
+app.use(cors());
 app.use(express.json());
-app.use(methodOverride("_method"));
-const PORT = 3000;
 
-let comments = [
-  {
-    id: uuid(),
-    name: "uchiha madara",
-    comment:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, sunt!",
-  },
-  { id: uuid(), name: "uchiha shisui", comment: "Lorem ipsum dolor sit amet" },
-  {
-    id: uuid(),
-    name: "uchiha itachi",
-    comment:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, sunt! Lorem ipsum dolor sit amet.",
-  },
-  { id: uuid(), name: "uchiha sasuke", comment: "Lorem ipsum " },
-];
-//  tampilkan semua komentar
-app.get("/comments", (req, res) => {
-  res.render("home", { comments });
+app.get("/", (req, res) => {
+  res.render("home");
 });
-//  form untuk membuat komentar baru
-app.get("/comments/new", (req, res) => {
-  res.render("new");
-});
-//  post request
-app.post("/comments", (req, res) => {
-  const { name, comment } = req.body;
-  comments.push({ name, comment, id: uuid() });
-  res.redirect("/comments");
-});
-//  tampilkan detail post
-app.get("/comments/:id", (req, res) => {
-  const { id } = req.params;
-  const comment = comments.find((c) => c.id === id);
-  res.render("show", { comment });
-});
-app.get("/comments/:id/edit", (req, res) => {
-  const { id } = req.params;
-  const updateComment = comments.find((c) => c.id === id);
-  res.render("update", { updateComment });
-});
-app.patch("/comments/:id", (req, res) => {
-  const { id } = req.params;
-  const newComment = req.body.comment;
-  const foundComment = comments.find((c) => c.id == id);
-  foundComment.comment = newComment;
-  res.redirect("/comments");
-});
+app.use("/users", userRoutes);
+app.use("/todos", todoRoutes);
 
-app.delete("/comments/:id", (req, res) => {
-  const { id } = req.params;
-  comments = comments.filter((c) => c.id !== id);
-  res.redirect("/comments");
-});
-
+let PORT = process.env.PORT;
+if (PORT == null || PORT == "") {
+  PORT = 8000;
+}
 app.listen(PORT, () => {
   console.log(`LISTENING ON PORT: ${PORT}`);
 });

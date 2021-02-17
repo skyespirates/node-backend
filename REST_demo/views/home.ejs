@@ -6,16 +6,10 @@
     <title>Homepage</title>
   </head>
   <body>
-    <h1>Show All Comments</h1>
-    <a href="/comments/new">new</a>
-    <ol>
-      <% for(let c of comments) { %>
-      <li>
-        <%= c.comment %> - <strong><%= c.name %></strong>
-        <small><a href="/comments/<%= c.id %> ">detail</a></small>
-        <small><a href="/comments/<%= c.id %>/edit ">update</a></small>
-      </li>
-      <% } %>
-    </ol>
+    <h1>REST API:</h1>
+    <ul>
+      <li><a href="/users">/users</a></s></li>
+      <li><a href="/todos">/todos</a></s></li>
+    </ul>
   </body>
 </html>
